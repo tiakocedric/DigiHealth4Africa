@@ -7,6 +7,27 @@ import santeImage from '../images/sante.png';
 import remoteHealthImage from '../images/remote-heatlh.png';
 import clinicHomeImage from '../images/clinic-home.jpg';
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6
+    }
+  }
+};
+
 const Blog: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -63,27 +84,6 @@ const Blog: React.FC = () => {
       author: "Dr. Aminata Diallo"
     }
   ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  };
 
   return (
     <section id="blog" className="py-20 bg-white">
