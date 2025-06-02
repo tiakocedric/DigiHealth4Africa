@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import newTechRevolutionImage from '../images/new-tech-revolution.png';
 import tchadMissionImage from '../images/tchad-mission.png';
 import santeImage from '../images/sante.png';
@@ -6,6 +8,11 @@ import remoteHealthImage from '../images/remote-heatlh.png';
 import clinicHomeImage from '../images/clinic-home.jpg';
 
 const Blog: React.FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   const blogPosts = [
     {
       id: 1,
@@ -57,29 +64,72 @@ const Blog: React.FC = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6
+      }
+    }
+  };
+
   return (
     <section id="blog" className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900">
             Actualités
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Découvrez nos dernières actualités et articles sur la santé digitale en Afrique.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {blogPosts.map((post) => (
             <BlogCard key={post.id} post={post} />
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-12 text-center">
-          <button className="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-colors duration-200">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-12 text-center"
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center px-6 py-3 border-2 border-primary-600 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-colors duration-200"
+          >
             Voir tous les articles
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
@@ -100,13 +150,18 @@ interface BlogCardProps {
 
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
-    <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <motion.article
+      variants={itemVariants}
+      className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+    >
       <div className="aspect-[4/3] overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        <img 
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10"></div>
+        <motion.img 
           src={post.image} 
           alt={post.title} 
-          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 hover:opacity-90"
+          className="w-full h-full object-cover"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.4 }}
         />
       </div>
       <div className="p-6">
@@ -117,17 +172,19 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
         </div>
         <h3 className="text-xl font-heading font-semibold mb-3 text-gray-900">{post.title}</h3>
         <p className="text-gray-600 mb-4">{post.excerpt}</p>
-        <a 
+        <motion.a 
           href="#" 
           className="text-primary-600 font-medium hover:text-primary-700 inline-flex items-center"
+          whileHover={{ x: 5 }}
+          transition={{ duration: 0.2 }}
         >
           Lire la suite
           <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-        </a>
+        </motion.a>
       </div>
-    </article>
+    </motion.article>
   );
 };
 
