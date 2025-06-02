@@ -1,5 +1,8 @@
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
+import formationImage from '../images/formation.png';
+import nordMissionImage from '../images/nord-mission.png';
+import partenartImage from '../images/partenart.png';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -7,7 +10,7 @@ const Projects: React.FC = () => {
       id: 1,
       title: "Mission pilote dans le Nord-Cameroun",
       description: "Déploiement de mallettes de télémédecine dans 5 centres de santé ruraux, formation des agents de santé et mise en place d'un réseau de télé-expertise.",
-      image: "https://images.pexels.com/photos/3806172/pexels-photo-3806172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: nordMissionImage,
       stats: [
         { label: "Centres équipés", value: "5" },
         { label: "Patients bénéficiaires", value: "1200+" },
@@ -18,7 +21,7 @@ const Projects: React.FC = () => {
       id: 2,
       title: "Formation de 40 agents de santé",
       description: "Programme de formation à l'utilisation des outils de télémédecine pour les professionnels de santé locaux, intégrant une composante de suivi et de mentorat.",
-      image: "https://images.pexels.com/photos/5327585/pexels-photo-5327585.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: formationImage,
       stats: [
         { label: "Agents formés", value: "40" },
         { label: "Heures de formation", value: "120" },
@@ -29,7 +32,7 @@ const Projects: React.FC = () => {
       id: 3,
       title: "Partenariat ONG pour 10 centres de santé ruraux",
       description: "Collaboration avec une ONG internationale pour équiper des centres de santé en zones rurales avec des solutions de télémédecine adaptées.",
-      image: "https://images.pexels.com/photos/3998011/pexels-photo-3998011.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: partenartImage,
       stats: [
         { label: "Centres équipés", value: "10" },
         { label: "Population couverte", value: "25 000" },

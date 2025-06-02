@@ -1,5 +1,6 @@
 import React from 'react';
 import { Users, Eye, Leaf } from 'lucide-react';
+import doctorImage from '../images/docor.png';
 
 const About: React.FC = () => {
   return (
@@ -30,7 +31,7 @@ const About: React.FC = () => {
           </div>
           <div className="relative">
             <img 
-              src="https://images.pexels.com/photos/6129500/pexels-photo-6129500.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+              src={doctorImage} 
               alt="L'équipe DIGIHEALTH4AFRICA" 
               className="rounded-lg shadow-xl w-full h-[400px] object-cover"
             />

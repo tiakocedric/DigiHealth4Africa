@@ -1,4 +1,9 @@
 import React from 'react';
+import newTechRevolutionImage from '../images/new-tech-revolution.png';
+import tchadMissionImage from '../images/tchad-mission.png';
+import santeImage from '../images/sante.png';
+import remoteHealthImage from '../images/remote-heatlh.png';
+import clinicHomeImage from '../images/clinic-home.jpg';
 
 const Blog: React.FC = () => {
   const blogPosts = [
@@ -6,7 +11,7 @@ const Blog: React.FC = () => {
       id: 1,
       title: "La télémédecine : une révolution pour l'Afrique rurale",
       excerpt: "Comment les nouvelles technologies permettent de désenclaver médicalement les zones rurales africaines...",
-      image: "https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: newTechRevolutionImage,
       date: "15 mai 2025",
       author: "Dr. Aminata Diallo"
     },
@@ -22,9 +27,33 @@ const Blog: React.FC = () => {
       id: 3,
       title: "Retour sur notre mission au Tchad",
       excerpt: "Formation des agents de santé locaux et installation de 3 mallettes de télémédecine dans la région du Lac Tchad...",
-      image: "https://images.pexels.com/photos/3376790/pexels-photo-3376790.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      image: tchadMissionImage,
       date: "18 mars 2025",
       author: "Martine Koné"
+    },
+    {
+      id: 4,
+      title: "L'impact de la télémédecine sur la santé maternelle en Afrique",
+      excerpt: "Comment nos solutions numériques améliorent le suivi des grossesses et réduisent la mortalité maternelle dans les zones rurales...",
+      image: santeImage,
+      date: "28 février 2025",
+      author: "Dr. Fatoumata Sow"
+    },
+    {
+      id: 5,
+      title: "Lancement de notre programme d'éducation médicale à distance",
+      excerpt: "Présentation de notre nouvelle plateforme d'apprentissage en ligne pour les professionnels de santé africains...",
+      image: remoteHealthImage,
+      date: "15 février 2025",
+      author: "Dr. Moussa Diop"
+    },
+    {
+      id: 6,
+      title: "Notre partenariat avec l'OMS pour la santé numérique en Afrique",
+      excerpt: "Détails de notre collaboration avec l'Organisation Mondiale de la Santé pour améliorer l'accès aux soins dans les pays africains...",
+      image: clinicHomeImage,
+      date: "31 janvier 2025",
+      author: "Dr. Aminata Diallo"
     }
   ];
 
@@ -72,11 +101,12 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
     <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <div className="h-48 overflow-hidden">
+      <div className="aspect-[4/3] overflow-hidden relative">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
         <img 
           src={post.image} 
           alt={post.title} 
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110 hover:opacity-90"
         />
       </div>
       <div className="p-6">
