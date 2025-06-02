@@ -1,6 +1,8 @@
 import React from 'react';
-import { Briefcase, Truck, Box, Monitor, Globe, Plane } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { TelemedIcon, HealthTechIcon } from './CustomIcons';
 import SolutionCard from './SolutionCard';
+import AnimatedSection from './AnimatedSection';
 
 const Solutions: React.FC = () => {
   const solutions = [
@@ -8,7 +10,7 @@ const Solutions: React.FC = () => {
       id: 1,
       title: "Mallettes de télémédecine",
       description: "Kits portables avec outils de diagnostic (ECG, tension, otoscope…).",
-      icon: <Briefcase className="h-12 w-12" />,
+      icon: <TelemedIcon />,
       action: "Demander une démonstration ou un échange",
       formFields: [
         { name: "entityName", label: "Nom de l'entité", type: "text" },
@@ -26,7 +28,7 @@ const Solutions: React.FC = () => {
       id: 2,
       title: "Bornes de télémédecine",
       description: "Dispositifs fixes connectés pour les téléconsultations.",
-      icon: <Monitor className="h-12 w-12" />,
+      icon: <HealthTechIcon />,
       action: "Planifier un rendez-vous d'étude technique",
       formFields: [
         { name: "establishmentName", label: "Nom de l'établissement", type: "text" },
@@ -42,7 +44,7 @@ const Solutions: React.FC = () => {
       id: 3,
       title: "Véhicules médicalisés",
       description: "Ambulances et unités mobiles pour zones isolées.",
-      icon: <Truck className="h-12 w-12" />,
+      icon: <TelemedIcon />,
       action: "Obtenir une fiche technique et un devis",
       formFields: [
         { name: "structure", label: "Structure concernée", type: "text" },
@@ -58,7 +60,7 @@ const Solutions: React.FC = () => {
       id: 4,
       title: "Conteneurs santé",
       description: "Structures médicalisées à installer.",
-      icon: <Box className="h-12 w-12" />,
+      icon: <HealthTechIcon />,
       action: "Demander un échange sur les modules santé",
       formFields: [
         { name: "organization", label: "Organisation demandeuse", type: "text" },
@@ -74,7 +76,7 @@ const Solutions: React.FC = () => {
       id: 5,
       title: "Télé-expertise locale et internationale",
       description: "Mise en réseau avec spécialistes.",
-      icon: <Globe className="h-12 w-12" />,
+      icon: <TelemedIcon />,
       action: "Organiser une réunion d'intégration de la télé-expertise",
       formFields: [
         { name: "medicalStructure", label: "Structure médicale", type: "text" },
@@ -89,7 +91,7 @@ const Solutions: React.FC = () => {
       id: 6,
       title: "Assistance aux évacuations sanitaires",
       description: "Transferts médicaux assistés.",
-      icon: <Plane className="h-12 w-12" />,
+      icon: <HealthTechIcon />,
       action: "Demander une convention ou un partenariat",
       formFields: [
         { name: "entityType", label: "Type d'entité", type: "text" },
@@ -103,24 +105,41 @@ const Solutions: React.FC = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
   return (
-    <section id="solutions" className="py-20 bg-gray-50">
+    <section id="solutions" className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900">
+        <AnimatedSection className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4 text-gray-900 dark:text-white">
             Nos solutions
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Des solutions innovantes et adaptées pour répondre aux besoins de santé en Afrique,
             même dans les zones les plus reculées.
           </p>
-        </div>
+        </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {solutions.map((solution) => (
-            <SolutionCard key={solution.id} solution={solution} />
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {solutions.map((solution, index) => (
+            <AnimatedSection key={solution.id} delay={index * 0.1}>
+              <SolutionCard solution={solution} />
+            </AnimatedSection>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
